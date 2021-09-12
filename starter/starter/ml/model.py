@@ -19,7 +19,7 @@ def train_model(X_train, y_train):
     """
 
     model = GradientBoostingClassifier(subsample=0.8, max_features=0.8,
-    	random_state=1).fit(X_train, y_train)
+        random_state=1).fit(X_train, y_train)
     
     return model
 

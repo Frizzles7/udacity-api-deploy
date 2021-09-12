@@ -13,7 +13,7 @@ import joblib
 data = pd.read_csv("../data/census_clean.csv")
 
 # Perform train-test split
-train, test = train_test_split(data, test_size=0.20)
+train, test = train_test_split(data, test_size=0.20, random_state=1)
 
 cat_features = [
     "workclass",
