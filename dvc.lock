@@ -1,0 +1,43 @@
+schema: '2.0'
+stages:
+  model_training:
+    cmd: python starter/starter/train_model.py
+    deps:
+    - path: starter/data/census_clean.csv
+      md5: 12c208530a5680c15ae19b34152286dd
+      size: 3518606
+    - path: starter/starter/train_model.py
+      md5: 3b7385e3593c91c5af2e2c7813c1c2d6
+      size: 1135
+    outs:
+    - path: starter/model/encoder.pkl
+      md5: c346d7612f9f2223b01f4998bb4d3588
+      size: 3855
+    - path: starter/model/lb.pkl
+      md5: 18fae289799e4521aaaf548f3fed7533
+      size: 404
+    - path: starter/model/model.pkl
+      md5: 705fd34cdc87c6761b6e5ce44028fe51
+      size: 179410
+  performance_slices:
+    cmd: python starter/starter/performance_slices.py
+    deps:
+    - path: starter/data/census_clean.csv
+      md5: 12c208530a5680c15ae19b34152286dd
+      size: 3518606
+    - path: starter/model/encoder.pkl
+      md5: c346d7612f9f2223b01f4998bb4d3588
+      size: 3855
+    - path: starter/model/lb.pkl
+      md5: 18fae289799e4521aaaf548f3fed7533
+      size: 404
+    - path: starter/model/model.pkl
+      md5: 705fd34cdc87c6761b6e5ce44028fe51
+      size: 179410
+    - path: starter/starter/performance_slices.py
+      md5: a18267c5742f4ee82b3afc5fecff88de
+      size: 1918
+    outs:
+    - path: starter/starter/slice_output.txt
+      md5: 364d327a74cf85a99e49bd5bb52dfe64
+      size: 9217
