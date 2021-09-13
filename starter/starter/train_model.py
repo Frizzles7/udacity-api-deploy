@@ -32,7 +32,7 @@ X_train, y_train, encoder, lb = process_data(
 )
 
 # Process the test data
-X_text, y_test, encoder, lb = process_data(
+X_test, y_test, encoder, lb = process_data(
     test, categorical_features=cat_features, label="salary", training=False, 
     encoder=encoder, lb=lb
 )
