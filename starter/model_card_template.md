@@ -9,7 +9,7 @@ Megan McGee created this model. It is a gradient boosting classifier using sciki
 This model should be used to predict whether salary is more than $50,000 or not based off of census data. The intended users for this model are researchers investigating bias.
 
 ## Training Data
-The data was obtained from https://github.com/udacity/nd0821-c3-starter-code/tree/master/starter/data as census.csv, though it is originally from archive.ics.uci.edu/ml/datasets/census+income.
+The data was obtained from https://github.com/udacity/nd0821-c3-starter-code/tree/master/starter/data as census.csv, though it is originally from https://archive.ics.uci.edu/ml/datasets/census+income.
 
 Spaces were removed from the file in preprocessing. A total of 32,561 rows are included in the data. A random sample of 80% of this data was used for training. The training data was processed using one hot encoding and a label binarizer.
 
