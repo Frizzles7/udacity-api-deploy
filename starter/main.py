@@ -3,8 +3,8 @@ from pydantic import BaseModel
 import joblib
 import pandas as pd
 import os
-from starter.ml.data import process_data
-from starter.ml.model import inference
+from starter.starter.ml.data import process_data
+from starter.starter.ml.model import inference
 
 # from dvc_on_heroku_instructions.md
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
@@ -38,7 +38,7 @@ class Prediction(BaseModel):
 async def welcome():
     return {"Greeting": "Welcome to the API!"}
 
-@app.post("/inference/", response_model=Prediction, status_code=200)
+@app.post("/inference", response_model=Prediction, status_code=200)
 async def run_prediction(data: Features):
     # ingest Features into dataframe for processing
     df = pd.DataFrame([{"age": data.age,
