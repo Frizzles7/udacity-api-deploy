@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 from starter.main import app
+import json
 
 client = TestClient(app)
 
@@ -7,7 +8,7 @@ def test_greeting():
     """ Test the greeting at the root """
     r = client.get("/")
     assert r.status_code == 200
-    assert r.json == {"Greeting": "Welcome to the API!"}
+    assert json.loads(r.text) == {"Greeting": "Welcome to the API!"}
 
 def test_inference_zero():
     """ Test the inference post function for a prediction of zero """
@@ -29,7 +30,7 @@ def test_inference_zero():
     }
     r = client.post("/inference", json=data_zero)
     assert r.status_code == 200
-    assert r.json == {"prediction": "Salary <= 50K"}
+    assert json.loads(r.text) == {"prediction": "Salary <= 50K"}
 
 def test_inference_one():
     """ Test the inference post function for a prediction of one """
@@ -51,5 +52,5 @@ def test_inference_one():
     }
     r = client.post("/inference", json=data_one)
     assert r.status_code == 200
-    assert r.json == {"prediction": "Salary > 50K"}
+    assert json.loads(r.text) == {"prediction": "Salary > 50K"}
 
