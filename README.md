@@ -1,31 +1,31 @@
 # Overview
+In this project, I use census data to build a model. I use DVC to track the data and artifacts created. I use an S3 bucket as my DVC remote. I setup Github Actions to pull artifacts using DVC, install dependencies, run flake8, and run pytest.
 
+Next I create an API.
 
 # Environment Set up
 * Download and install Miniconda if you do not have conda already.
     * conda create -n [envname] "python=3.8" scikit-learn dvc dvc-s3 pandas numpy pytest jupyter jupyterlab fastapi uvicorn -c conda-forge
 
-## Repositories
-* Create a directory for the project and initialize git and dvc.
-    * As you work on the code, continually commit changes. Generated models you want to keep must be committed to dvc.
-* Connect your local git repo to GitHub.
-* Setup GitHub Actions on your repo. You can use one of the pre-made GitHub Actions if at a minimum it runs pytest and flake8 on push and requires both to pass without error.
-    * Make sure you set up the GitHub Action to have the same version of Python as you used in development.
-* Set up a remote repository for dvc.
+# Repositories
+* Clone this repository and into your project directory, and then initialize DVC.
+* For the DVC remote, this project uses S3. Setup your S3 bucket, install the AWS CLI tool, create an IAM user, obtain your Access Key Id and Secret Access Key.
+* Configure the AWS CLI to use your Access Key Id and Secret Access Key.
+* Store your Access Key Id and Secret Access Key as secrets in Github for Github Actions. In the repository settings, this can be done under Secrets. Create new repository secrets, one for Access Key Id and one for Secret Access Key.
 
-# Data
-* Download census.csv and commit it to dvc.
-* This data is messy, try to open it in pandas and see what you get.
-* To clean it, use your favorite text editor to remove all spaces.
-* Commit this modified data to dvc (we often want to keep the raw data untouched but then can keep updating the cooked version).
+# Running the Model
+* The raw data was cleaned by removing all spaces in a text editor to create the cleaned version of the data.
+* Model training can be run from the top level of the project using the DVC pipeline as follows:
+```bash
+dvc run -n model_training -d starter/starter/train_model.py -d starter/data/census_clean.csv -o starter/model/model.pkl -o starter/model/encoder.pkl -o starter/model/lb.pkl python starter/starter/train_model.py
+```
+* Model performance on slices of the data can be run from the top level of the project using the DVC pipeline as follows:
+```bash
+dvc run -n performance_slices -d starter/starter/performance_slices.py -d starter/data/census_clean.csv -d starter/model/model.pkl -d starter/model/encoder.pkl -d starter/model/lb.pkl -o starter/starter/slice_output.txt python starter/starter/performance_slices.py
+```
 
-# Model
-* Using the starter code, write a machine learning model that trains on the clean data and saves the model. Complete any function that has been started.
-* Write unit tests for at least 3 functions in the model code.
-* Write a function that outputs the performance of the model on slices of the data.
-    * Suggestion: for simplicity, the function can just output the performance on slices of just the categorical features.
-* Write a model card using the provided template.
 
+# to be done
 # API Creation
 *  Create a RESTful API using FastAPI this must implement:
     * GET on the root giving a welcome message.
