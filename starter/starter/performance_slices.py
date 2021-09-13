@@ -36,15 +36,15 @@ def performance_by_slice(data, model, encoder, lb, cat_features):
         results[col] = col_results
     
     # write output in results dictionary to file
-    with open('slice_output.txt', 'w') as f:
+    with open('starter/starter/slice_output.txt', 'w') as f:
         json.dump(results, f, indent=2)
 
     
 if __name__ == "__main__":
-    data = pd.read_csv("../data/census_clean.csv")
-    model = joblib.load("model.pkl")
-    encoder = joblib.load("encoder.pkl")
-    lb = joblib.load("lb.pkl")
+    data = pd.read_csv("starter/data/census_clean.csv")
+    model = joblib.load("starter/model/model.pkl")
+    encoder = joblib.load("starter/model/encoder.pkl")
+    lb = joblib.load("starter/model/lb.pkl")
     cat_features = [
         "workclass",
         "education",

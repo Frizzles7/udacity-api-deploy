@@ -10,7 +10,7 @@ import pandas as pd
 import joblib
 
 # Add code to load in the data
-data = pd.read_csv("../data/census_clean.csv")
+data = pd.read_csv("starter/data/census_clean.csv")
 
 # Perform train-test split
 train, test = train_test_split(data, test_size=0.20, random_state=1)
@@ -39,7 +39,7 @@ X_test, y_test, encoder, lb = process_data(
 
 # Train and save the model, encoder, and lb
 model = train_model(X_train, y_train)
-joblib.dump(model, "model.pkl")
-joblib.dump(encoder, "encoder.pkl")
-joblib.dump(lb, "lb.pkl")
+joblib.dump(model, "starter/model/model.pkl")
+joblib.dump(encoder, "starter/model/encoder.pkl")
+joblib.dump(lb, "starter/model/lb.pkl")
 
