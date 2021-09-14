@@ -26,4 +26,8 @@ dvc run -n performance_slices -d starter/starter/performance_slices.py -d starte
 
 # API
 * The API is available at https://megan-udacity-app.herokuapp.com/ and can be used in the following ways:
+    * Documentation is available at https://megan-udacity-app.herokuapp.com/docs - see this documentation for an example
+    * The root domain displays a welcome message at https://megan-udacity-app.herokuapp.com/
+    * Posts to the API can be completed at https://megan-udacity-app.herokuapp.com/inference
 
+Note that I setup the Procfile for Heroku per https://stackoverflow.com/questions/59391560/how-to-run-uvicorn-in-heroku.
