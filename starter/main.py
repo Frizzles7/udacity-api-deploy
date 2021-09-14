@@ -39,7 +39,7 @@ async def welcome():
     return {"Greeting": "Welcome to the API!"}
 
 @app.post("/inference", response_model=Prediction, status_code=200)
-async def run_prediction(data: Features):
+def run_prediction(data: Features):
     # ingest Features into dataframe for processing
     df = pd.DataFrame([{"age": data.age,
                         "workclass": data.workclass,
